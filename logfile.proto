@@ -1,0 +1,62 @@
+package logstat;
+
+option java_package = "com.weblog.logstat";
+option java_outer_classname = "LogFileProtos";
+
+message CommonLog {
+  required string domain = 1;
+  required string id = 2;
+  required string sid = 3;
+  required string ip = 4;
+  required string datetime = 5;
+  required string referer = 6;
+
+  message IPInfo {
+    optional string country = 1;
+    optional string province = 2;
+    optional string city = 3;
+    optional string isp = 4;
+  }
+
+  message UrlInfo {
+    optional string url = 1;
+    optional string staytime = 2;
+    optional string visittime = 3;
+  }
+
+  message PathInfo {
+    repeated UrlInfo urlinfo = 1;
+  }
+
+  message UAInfo {
+    optional string device = 1;
+    optional string os = 2;
+    optional string browser = 3;
+    optional string engine = 4;
+    optional string nettype = 5;
+    optional string language = 6;
+  }
+
+  message UserInfo {
+    repeated string ip = 1;
+    repeated string name = 2;
+    repeated string gender = 3;
+    repeated string province = 4;
+    repeated string city = 5;
+    repeated string district = 6;
+    repeated string mobile = 7;
+    repeated string address = 8;
+    optional string hw = 9;
+    optional string ua = 10;
+  }
+  
+  optional PathInfo pathinfo = 7;
+  optional IPInfo ipinfo = 8;
+  optional UAInfo uainfo = 9;
+  optional UserInfo userinfo = 10;
+  
+}
+
+message LogFile {
+  repeated CommonLog commonlog = 1;
+} 
